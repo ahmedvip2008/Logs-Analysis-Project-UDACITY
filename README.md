@@ -37,7 +37,7 @@ This project was created for the *Full Stack Web Developer Nanodegree* at [**Uda
     2. create views using PSQL Command :
  
  ### collect
- '''
+ ```
 CREATE VIEW collect AS
   SELECT articles.title AS article_title,
          articles.author AS author_id,
@@ -48,20 +48,20 @@ CREATE VIEW collect AS
         AND authors.id = articles.author
   GROUP BY article_title, author_id, author_name
   ORDER BY views DESC;
-'''
+```
 
 ### total_request
-'''
+```
 CREATE VIEW total_request AS
 SELECT count(*) AS COUNT,
    date(TIME) AS date
 FROM log
 GROUP BY date
 ORDER BY COUNT DESC;
-'''
+```
 
 ### error_requests
-'''
+```
  CREATE VIEW error_request AS
  SELECT count(*) AS COUNT,
    date(TIME) AS date
@@ -69,17 +69,17 @@ ORDER BY COUNT DESC;
  WHERE status!='200 OK'
  GROUP BY date
  ORDER BY COUNT DESC;
-'''
+```
 
 ### error_percentage
-'''
+```
  CREATE VIEW error_percentage AS
  SELECT total_request.date,
    round((100.0*error_request.count)/total_request.count,2) AS error_percentage
  FROM error_request,
   total_request
  WHERE error_request.date=total_request.date;
- '''
+ ```
  
  #### Run the Tool :
 1. From the vagrant directory inside the virtual machine, run `logs_analysis.py` using: 
